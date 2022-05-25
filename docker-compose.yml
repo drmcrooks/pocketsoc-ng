@@ -10,8 +10,8 @@ services:
     volumes:
       - router_bin:/opt/pocketsoc-ng/router/bin
       - router_data:/opt/pocketsoc-ng/router/data
-#    cap_add:
-#      - NET_ADMIN
+    cap_add:
+      - NET_ADMIN
     networks:
       - mirror
       - internal
