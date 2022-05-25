@@ -176,7 +176,7 @@ services:
       - client_data:/opt/pocketsoc-ng/client/data
     cap_add:
       - NET_ADMIN
-          networks:
+    networks:
       internal:
 #        ipv4_address: 172.18.0.15
 
