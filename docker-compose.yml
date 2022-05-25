@@ -174,7 +174,9 @@ services:
     volumes:
       - client_bin:/opt/pocketsoc-ng/client/bin
       - client_data:/opt/pocketsoc-ng/client/data
-    networks:
+    cap_add:
+      - NET_ADMIN
+          networks:
       internal:
 #        ipv4_address: 172.18.0.15
 
