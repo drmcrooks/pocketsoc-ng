@@ -180,6 +180,8 @@ services:
       - NET_ADMIN
     networks:
       internal:
+    dns:
+      - router
 #        ipv4_address: 172.18.0.15
 
 
