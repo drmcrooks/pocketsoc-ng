@@ -181,7 +181,7 @@ services:
     networks:
       internal:
     dns:
-      - 172.18.02
+      - 172.18.0.2
 #        ipv4_address: 172.18.0.15
 
 
