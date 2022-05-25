@@ -182,6 +182,7 @@ services:
       internal:
     dns:
       - 8.8.8.8
+    network_mode: "bridge"
 #        ipv4_address: 172.18.0.15
 
 
