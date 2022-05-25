@@ -4,8 +4,8 @@ sleeptime=5
 
 echo "Applying routing rules"
 
-chmod +x /opt/pocketsoc/router/bin/routing.sh
-/opt/pocketsoc/router/bin/routing.sh
+chmod +x /opt/pocketsoc-ng/router/bin/routing.sh
+/opt/pocketsoc-ng/router/bin/routing.sh
 
 #(
 #echo "Starting up DNS proxy"
