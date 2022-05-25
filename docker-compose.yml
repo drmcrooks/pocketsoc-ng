@@ -12,6 +12,8 @@ services:
       - router_data:/opt/pocketsoc-ng/router/data
     cap_add:
       - NET_ADMIN
+    ports:
+      - 53
     networks:
       - mirror
       - internal
