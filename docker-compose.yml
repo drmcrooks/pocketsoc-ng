@@ -8,7 +8,6 @@ services:
     build: ./components/router/
     container_name: router
     volumes:
-      - router_bin:/opt/pocketsoc-ng/router/bin
       - router_data:/opt/pocketsoc-ng/router/data
     cap_add:
       - NET_ADMIN
@@ -174,7 +173,6 @@ services:
     build: ./components/client/
     container_name: client
     volumes:
-      - client_bin:/opt/pocketsoc-ng/client/bin
       - client_data:/opt/pocketsoc-ng/client/data
     cap_add:
       - NET_ADMIN
@@ -200,9 +198,9 @@ services:
 volumes:
   opensearch-data1:
   opensearch-data2:
-  client_bin:
+#  client_bin:
   client_data:
-  router_bin:
+#  router_bin:
   router_data:
   webserver_data:
 
