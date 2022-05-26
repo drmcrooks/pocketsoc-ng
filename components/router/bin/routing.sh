@@ -10,9 +10,6 @@ internal_subnet="18"
 external=`route | grep $external_subnet | awk '{print $NF}'`
 internal=`route | grep $internal_subnet | awk '{print $NF}'`
 
-echo $internal
-echo $external
-
 # Configure routing
 
 iptables -t nat -A POSTROUTING -o $external -j MASQUERADE

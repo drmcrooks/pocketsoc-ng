@@ -1,8 +1,20 @@
 #! /bin/bash
 
-routerip=`dig +noall +answer router | awk '{print $NF}'`
+routerip=`dig +noall +answer router.pocketsoc-ng_internal | awk '{print $NF}'`
 
-ip route del default
-ip route add default via $routerip
+external_subnet="19"
+internal_subnet="18"
+mirror_subnet="20"
+
+# Define interfaces
+
+external=`route | grep $external_subnet | awk '{print $NF}'`
+internal=`route | grep $internal_subnet | awk '{print $NF}'`
+mirror=`route | grep $mirror_subnet | awk '{print $NF}'`
+
+ip link set dev $external down
+ip link set dev $mirror down
+
+ip route add 172.19.0.0/16 via $internal
 
 tail -f /dev/null
