@@ -1,6 +1,6 @@
 FROM quay.io/centos/centos:stream8
 
-RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap iputils
+RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap iputils iproute
 
 ADD ./bin /opt/pocketsoc-ng/router/bin
 
