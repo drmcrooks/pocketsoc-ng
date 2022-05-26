@@ -171,8 +171,6 @@ services:
   client:
     build: ./components/client/
     container_name: client
-    volumes:
-      - client_data:/opt/pocketsoc-ng/client/data
     cap_add:
       - NET_ADMIN
     networks:
@@ -198,7 +196,7 @@ volumes:
   opensearch-data1:
   opensearch-data2:
 #  client_bin:
-  client_data:
+#  client_data:
 #  router_bin:
   router_data:
   webserver_data:

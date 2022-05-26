@@ -15,6 +15,6 @@ mirror=`route | grep $mirror_subnet | awk '{print $NF}'`
 ip link set dev $external down
 ip link set dev $mirror down
 
-ip route add 172.19.0.0/16 via $internal
+ip route add 172.19.0.0/16 via $routerip
 
 tail -f /dev/null
