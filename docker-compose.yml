@@ -14,8 +14,8 @@ services:
     ports:
       - 53
     networks:
-      - mirror
       - internal
+      - mirror
       - external
 
 # SOC
