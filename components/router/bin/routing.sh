@@ -7,11 +7,11 @@ internal_subnet="18"
 
 # Define interfaces
 
-external=`route | grep $external_subnet | awk '{print $NF}'`
-internal=`route | grep $internal_subnet | awk '{print $NF}'`
+external_interface=`route | grep $external_subnet | awk '{print $NF}'`
+internal_interface=`route | grep $internal_subnet | awk '{print $NF}'`
 
 # Configure routing
 
-iptables -t nat -A POSTROUTING -o $external -j MASQUERADE
-iptables -A FORWARD -i $external -o $internal -m state --state RELATED,ESTABLISHED -j ACCEPT
-iptables -A FORWARD -i $internal -o $external -j ACCEPT
+iptables -t nat -A POSTROUTING -o $external_interface -j MASQUERADE
+iptables -A FORWARD -i $external_interface -o $internal_interface -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -i $internal_interface -o $external_interface -j ACCEPT
