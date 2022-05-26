@@ -154,7 +154,7 @@ services:
   zeek:
     build: ./components/zeek/
     container_name: zeek
-   volumes:
+    volumes:
       - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
 #      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
 #      - ./components/zeek/pcaps:/pcaps
