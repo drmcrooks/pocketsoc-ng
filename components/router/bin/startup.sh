@@ -7,6 +7,9 @@ echo "Applying routing rules"
 chmod +x /opt/pocketsoc-ng/router/bin/routing.sh
 /opt/pocketsoc-ng/router/bin/routing.sh
 
+chmod +x /opt/pocketsoc-ng/router/bin/mirror.sh
+/opt/pocketsoc-ng/router/bin/mirror.sh
+
 (
 echo "Starting up DNS proxy"
 /usr/sbin/dnsmasq -k &
