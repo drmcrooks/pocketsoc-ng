@@ -10,12 +10,6 @@ echo "Applying routing rules"
 #chmod +x /opt/pocketsoc-ng/router/bin/mirror.sh
 #/opt/pocketsoc-ng/router/bin/mirror.sh
 
-(
-echo "Starting up DNS proxy"
-/usr/sbin/dnsmasq -k &
-)
-
-
 #sleeptime=150
 #
 #while ! nc -z -w 1 172.20.0.50 9200; do
