@@ -4,8 +4,8 @@ sleeptime=5
 
 echo "Applying routing rules"
 
-chmod +x /opt/pocketsoc-ng/router/bin/routing.sh
-/opt/pocketsoc-ng/router/bin/routing.sh
+#chmod +x /opt/pocketsoc-ng/router/bin/routing.sh
+#/opt/pocketsoc-ng/router/bin/routing.sh
 
 #chmod +x /opt/pocketsoc-ng/router/bin/mirror.sh
 #/opt/pocketsoc-ng/router/bin/mirror.sh
