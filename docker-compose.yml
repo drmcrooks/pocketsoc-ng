@@ -13,7 +13,7 @@ services:
       - NET_ADMIN
     networks:
       - internal
-      - external
+  #    - external
       - mirror
   
 
@@ -174,7 +174,7 @@ services:
     networks:
       - mirror
       - internal
-      - external
+  #   - external
 
 # "External"
 
@@ -200,10 +200,10 @@ networks:
     ipam:
       config:
         - subnet: 172.18.0.0/16
-  external:
-    ipam:
-      config:
-        - subnet: 172.19.0.0/16
+  #external:
+  #  ipam:
+  #    config:
+  #      - subnet: 172.19.0.0/16
   mirror:
     ipam:
       config:
