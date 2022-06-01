@@ -184,7 +184,7 @@ services:
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
-      external:
+      internal:
 
 volumes:
   opensearch-data1:
