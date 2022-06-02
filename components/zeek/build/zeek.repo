@@ -1,0 +1,5 @@
+[bro7]
+name=CERN Bro Repository
+baseurl=http://linuxsoft.cern.ch/repos/bro7-qa/x86_64/os/
+gpgcheck=1
+gpgkey=http://linuxsoft.cern.ch/repos/RPM-GPG-KEY-kojiv2

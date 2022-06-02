@@ -1,0 +1,21 @@
+#!/bin/sh
+
+ZEEK=$1
+VER=$2
+BUILD_TYPE="Release"
+
+URL="https://download.zeek.org/${ZEEK}-${VER}.tar.gz"
+
+if [ ! -e ${ZEEK}-${VER}.tar.gz ]
+then
+    /usr/bin/wget -c ${URL}
+fi
+if [ ! -d ${ZEEK}-${VER}.tar.gz ]
+then
+    /bin/tar zxvf ${ZEEK}-${VER}.tar.gz
+fi
+
+cd ${ZEEK}-${VER}
+./configure --prefix=/usr/local/${ZEEK}-${VER} --build-type="${BUILD_TYPE}" \
+--disable-auxtools --disable-broker-tests
+/usr/bin/make -j $(nproc) install

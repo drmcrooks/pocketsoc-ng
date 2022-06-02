@@ -1,0 +1,14 @@
+#!/bin/sh
+
+ZEEKVER=$1
+AFVER=$2
+ROOTDIR=$3
+
+/usr/bin/git clone https://github.com/J-Gras/zeek-af_packet-plugin.git
+cd zeek-af_packet-plugin
+/usr/bin/git fetch --all --tags
+/usr/bin/git checkout tags/${AFVER}
+./configure --zeek-dist=/${ROOTDIR}/zeek-${ZEEKVER}/ \
+--install-root=/usr/local/zeek-${ZEEKVER}/lib64/zeek/plugins  --with-kernel=/usr/src/$(ls /usr/src/kernels/)
+/usr/bin/make
+/usr/bin/make -j $(nproc) install
