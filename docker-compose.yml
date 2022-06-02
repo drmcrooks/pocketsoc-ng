@@ -178,6 +178,8 @@ services:
   webserver:
     build: ./components/webserver/
     container_name: webserver
+    cap_add:
+      - NET_ADMIN
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
