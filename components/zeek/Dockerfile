@@ -14,10 +14,8 @@ ADD ./test test
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
 RUN yum install -y bash git libmaxminddb libpcap openssl\
- python3 python3-devel python3-pip tcpdump && yum update\
+ python3 python3-devel python3-pip tcpdump zeek && yum update\
  -y && yum clean all && rm -rf /var/cache/yum
-
-RUN yum install -y zeek
 
 env PATH /opt/zeek/bin/:$PATH
 RUN /bin/sh scripts/configure.sh ${DIR} ${ZEEK_VER}
