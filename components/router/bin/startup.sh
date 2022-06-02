@@ -1,7 +1,7 @@
 #! /bin/bash
 
-chmod +x /opt/pocketsoc-ng/router/bin/mirror.sh
-/opt/pocketsoc-ng/router/bin/mirror.sh
+chmod +x /opt/pocketsoc-ng/bin/mirror.sh
+/opt/pocketsoc-ng/bin/mirror.sh
 
 #sleeptime=150
 #
