@@ -11,7 +11,7 @@ ADD ./scripts scripts
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
-RUN pip install GitPython
+RUN yum install -y python-pip && pip install GitPython
 
 RUN yum install -y zeek-4.0.6 && yum update\
  -y && yum clean all && rm -rf /var/cache/yum
