@@ -1,7 +1,7 @@
 #! /bin/bash
 
 routerip=`dig +noall +answer router.pocketsoc-ng_internal | awk '{print $NF}'`
-clientip=`dig +noall +answer webserver.pocketsoc-ng_internal | awk '{print $NF}'`
+clientip=`dig +noall +answer client.pocketsoc-ng_internal | awk '{print $NF}'`
 
 # Define subnets
 
