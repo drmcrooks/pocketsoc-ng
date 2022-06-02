@@ -1,6 +1,6 @@
 FROM quay.io/centos/centos:stream8
 
-ENV ZEEK_VER latest
+ENV ZEEK_VER 4.0.6
 
 ENV DIR /opt/pocketsoc-ng/code
 RUN mkdir -p ${DIR}
@@ -12,7 +12,7 @@ ADD ./scripts scripts
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
 RUN yum install -y bash git libmaxminddb libpcap openssl\
- python3 python3-devel python3-pip tcpdump zeek-zkg zeek && yum update\
+ python3 python3-devel python3-pip tcpdump zeek-$(ZEEK_VER) && yum update\
  -y && yum clean all && rm -rf /var/cache/yum
 
 env PATH /opt/zeek/bin/:$PATH
