@@ -12,6 +12,7 @@ internal_subnet="18"
 internal_interface=`route | grep $internal_subnet | awk '{print $NF}'`
 
 ip route flush $internal_interface
+ip route del default
 ip route add 172.18.0.0/16 dev $internal_interface
 ip route add $webserverip via $routerip
 
