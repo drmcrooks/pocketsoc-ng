@@ -13,6 +13,7 @@ services:
       - NET_ADMIN
     networks:
       - internal
+      - mirror
   
 
 # SOC
