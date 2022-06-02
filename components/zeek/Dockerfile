@@ -11,7 +11,7 @@ ADD ./scripts scripts
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
-RUN yum install -y python3 python3-devel python3-pip && pip3 install GitPython
+RUN yum install epel-release -y
 
 RUN yum install -y zeek && yum update -y && \ 
 yum clean all && rm -rf /var/cache/yum
