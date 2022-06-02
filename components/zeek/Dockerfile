@@ -11,8 +11,7 @@ ADD ./scripts scripts
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
-RUN yum install -y bash git libmaxminddb libpcap openssl\
- python3 python3-devel python3-pip tcpdump zeek-$(ZEEK_VER) && yum update\
+RUN yum install -y zeek && yum update\
  -y && yum clean all && rm -rf /var/cache/yum
 
 env PATH /opt/zeek/bin/:$PATH
