@@ -9,7 +9,6 @@ WORKDIR ${DIR}
 ADD ./build build
 ADD ./config config
 ADD ./scripts scripts
-ADD ./test test
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
