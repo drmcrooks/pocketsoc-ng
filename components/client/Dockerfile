@@ -4,8 +4,8 @@ FROM quay.io/centos/centos:stream8
 RUN dnf install -y bind-utils iputils iproute net-tools traceroute
 RUN dnf update -y
 
-ADD ./bin /opt/pocketsoc-ng/client/bin
+ADD ./bin /opt/pocketsoc-ng/bin
 
-RUN chmod +x /opt/pocketsoc-ng/client/bin/startup.sh
+RUN chmod +x /opt/pocketsoc-ng/bin/startup.sh
 
-CMD ["/opt/pocketsoc-ng/client/bin/startup.sh"]
+CMD ["/opt/pocketsoc-ng/bin/startup.sh"]
