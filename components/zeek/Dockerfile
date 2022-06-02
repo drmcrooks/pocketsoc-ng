@@ -11,13 +11,12 @@ ADD ./scripts scripts
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
-RUN yum install -y python-pip && pip install GitPython
+RUN yum install -y python3 python3-devel python3-pip && pip3 install GitPython
 
-RUN yum install -y zeek-4.0.6 && yum update\
- -y && yum clean all && rm -rf /var/cache/yum
+RUN yum install -y zeek && yum update -y && \ 
+yum clean all && rm -rf /var/cache/yum
 
 env PATH /opt/zeek/bin/:$PATH
 RUN /bin/sh scripts/configure.sh ${DIR} ${ZEEK_VER}
 # Todo: script to run instead of tail -f
 CMD zeekctl deploy && tail -f /dev/null
-
