@@ -8,4 +8,4 @@ ADD ./bin /opt/pocketsoc-ng/webserver/bin
 
 RUN chmod +x /opt/pocketsoc-ng/webserver/bin/startup.sh
 
-CMD ['/opt/pocketsoc-ng/webserver/bin/startup.sh']
+CMD ["/opt/pocketsoc-ng/webserver/bin/startup.sh"]
