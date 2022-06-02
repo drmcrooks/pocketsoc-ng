@@ -1,6 +1,6 @@
 FROM quay.io/centos/centos:stream8
 
-ENV ZEEK_VER 4.1.1
+ENV ZEEK_VER latest
 
 ENV DIR /opt/pocketsoc-ng/code
 RUN mkdir -p ${DIR}
