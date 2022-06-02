@@ -6,7 +6,6 @@ ENV DIR /opt/pocketsoc-ng/code
 RUN mkdir -p ${DIR}
 WORKDIR ${DIR}
 
-ADD ./build build
 ADD ./config config
 ADD ./scripts scripts
 
