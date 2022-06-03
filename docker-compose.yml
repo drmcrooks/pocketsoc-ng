@@ -4,16 +4,16 @@ services:
 
 # Infrastructure
 
-  #router:
-  #  build: ./components/router/
-  #  container_name: router
-  #  volumes:
-  #    - router_data:/opt/pocketsoc-ng/router/data
-  #  cap_add:
-  #    - NET_ADMIN
-  #  networks:
-  #    - internal
-  #    - mirror
+  router:
+    build: ./components/router/
+    container_name: router
+    volumes:
+      - router_data:/opt/pocketsoc-ng/router/data
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - internal
+      - mirror
   
 
 # SOC
