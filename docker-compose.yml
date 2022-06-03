@@ -4,16 +4,16 @@ services:
 
 # Infrastructure
 
-  router:
-    build: ./components/router/
-    container_name: router
-    volumes:
-      - router_data:/opt/pocketsoc-ng/router/data
-    cap_add:
-      - NET_ADMIN
-    networks:
-      - internal
-      - mirror
+  #router:
+  #  build: ./components/router/
+  #  container_name: router
+  #  volumes:
+  #    - router_data:/opt/pocketsoc-ng/router/data
+  #  cap_add:
+  #    - NET_ADMIN
+  #  networks:
+  #    - internal
+  #    - mirror
   
 
 # SOC
@@ -172,6 +172,7 @@ services:
       - NET_ADMIN
     networks:
       - internal
+      - mirror
 
 # "External"
 
@@ -183,7 +184,7 @@ services:
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
-      internal:
+      - internal
 
 volumes:
   opensearch-data1:
