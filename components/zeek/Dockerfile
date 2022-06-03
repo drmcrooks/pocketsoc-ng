@@ -11,7 +11,7 @@ ADD ./scripts scripts
 
 COPY ./repo/zeek.repo /etc/yum.repos.d/
 
-RUN yum install epel-release -y && yum install -y dnf-plugins-core && yum config-manager --set-enabled powertools
+RUN yum install ethtool epel-release -y && yum install -y dnf-plugins-core && yum config-manager --set-enabled powertools
 
 RUN yum install -y zeek tcpdump && yum update -y && \ 
 yum clean all && rm -rf /var/cache/yum
