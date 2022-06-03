@@ -1,7 +1,5 @@
 #! /bin/bash
 
-sleep 5
-
 chmod +x /opt/pocketsoc-ng/bin/mirror.sh
 /opt/pocketsoc-ng/bin/mirror.sh
 
