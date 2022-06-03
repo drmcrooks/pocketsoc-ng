@@ -1,6 +1,6 @@
 FROM httpd:latest
 
-RUN apt-get update && apt-get install -y iproute2 dnsutils
+RUN apt-get update && apt-get install -y iproute2 dnsutils iptables
 
 COPY ./data/ /usr/local/apache2/htdocs/
 
