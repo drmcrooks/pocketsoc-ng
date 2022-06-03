@@ -185,6 +185,7 @@ services:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
       - internal
+      - mirror
 
 volumes:
   opensearch-data1:
