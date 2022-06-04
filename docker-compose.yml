@@ -143,7 +143,7 @@ services:
       SECURITY_SALT: C2CE0A2A52448E31 # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
-#      - 5601:80
+      - 5601:80
       - 127.0.0.1:50000:50000
     networks:
       mirror:
