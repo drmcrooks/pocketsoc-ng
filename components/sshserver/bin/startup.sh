@@ -3,4 +3,6 @@
 chmod +x /opt/pocketsoc-ng/bin/routing.sh
 /opt/pocketsoc-ng/bin/routing.sh
 
-tail -f /dev/null
+ssh-keygen -q -N "" -t rsa -b 4096 -f /etc/ssh/ssh_host_rsa_key
+
+/usr/sbin/sshd
