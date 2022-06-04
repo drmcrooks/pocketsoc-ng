@@ -10,6 +10,5 @@
 
  internal_interface=`ip route | grep default | awk '{print $NF}'`
 
- ip route flush dev $internal_interface
  ip route add 172.18.0.0/24 dev $internal_interface
  ip route change 172.18.0.0/24 via $routerip
