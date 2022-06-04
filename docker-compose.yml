@@ -186,6 +186,14 @@ services:
     networks:
       - internal
 
+  sshserver:
+    build: ./components/sshserver/
+    container_name: sshserver
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - internal
+
 volumes:
   opensearch-data1:
   opensearch-data2:
