@@ -64,17 +64,17 @@ services:
     networks:
       - mirror
 
-  opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
-    container_name: opensearch-dashboards
-    ports:
-      - 5601:5601
-    expose:
-      - "5601"
-    environment:
-      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
-    networks:
-      - mirror
+#  opensearch-dashboards:
+#    image: opensearchproject/opensearch-dashboards:latest
+#    container_name: opensearch-dashboards
+#    ports:
+#      - 5601:5601
+#    expose:
+#      - "5601"
+#    environment:
+#      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
+#    networks:
+#      - mirror
 
   mysql:
     image: mariadb:10.7
@@ -143,7 +143,7 @@ services:
       SECURITY_SALT: C2CE0A2A52448E31 # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
-      - 80
+      - 5601:80
       - 127.0.0.1:50000:50000
     networks:
       mirror:
