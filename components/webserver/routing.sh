@@ -1,0 +1,1 @@
+../common/bin/routing.sh
