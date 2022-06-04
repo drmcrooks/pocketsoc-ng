@@ -14,7 +14,6 @@ services:
     networks:
       - internal
       - mirror
-  
 
 # SOC
 
@@ -148,7 +147,12 @@ services:
       - 127.0.0.1:50000:50000
     networks:
       mirror:
- #       ipv4_address: 172.20.0.20
+
+  misp-reverse-proxy:
+    build: ./components/misp-reverse-proxy/
+    container_name: misp-reverse-proxy
+    networks:
+      - mirror
 
   zeek:
     build: ./components/zeek/
