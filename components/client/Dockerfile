@@ -6,6 +6,4 @@ RUN dnf update -y
 
 ADD ./bin /opt/pocketsoc-ng/bin
 
-COPY ../common/bin/routing.sh /opt/pocketsoc-ng/bin
-
 CMD ["/opt/pocketsoc-ng/bin/startup.sh"]    
