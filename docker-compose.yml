@@ -143,7 +143,7 @@ services:
       SECURITY_SALT: C2CE0A2A52448E31 # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
-      - 8080:80
+      - 80
       - 127.0.0.1:50000:50000
     networks:
       mirror:
@@ -151,6 +151,8 @@ services:
   misp-reverse-proxy:
     build: ./components/misp-reverse-proxy/
     container_name: misp-reverse-proxy
+    ports:
+      - 443:443
     networks:
       - mirror
 
