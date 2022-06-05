@@ -8,3 +8,4 @@ while false; do
   fi
   sleep 120
 done
+)
