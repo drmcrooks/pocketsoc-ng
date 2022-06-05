@@ -43,7 +43,7 @@ if [ "$1" = 'supervisord' ]; then
     su-exec apache /var/www/MISP/app/Console/cake Admin redisReady
     
     # Init admin user
-    curl -k -L http://localhost/UserInitShell.php
+    curl -k -L http://localhost:8080/UserInitShell.php
     
     su-exec apache /var/www/MISP/app/Console/cake user change_pw admin@admin.test ${MISP_PASSWORD} --no_password_change
 fi
