@@ -2,9 +2,6 @@
 ##!
 ##! This file will not be overwritten when upgrading or reinstalling!
 
-# POCKETSOC-NG SPECIFIC SETUP NOT FOR PRODUCTION
-redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
-
 # Installation-wide salt value that is used in some digest hashes, e.g., for
 # the creation of file IDs. Please change this to a hard to guess value.
 redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
@@ -106,3 +103,24 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 
 # Uncomment this to source zkg's package state
 # @load packages
+
+#########################
+Additions after this line
+#########################
+
+# POCKETSOC-NG SPECIFIC SETUP NOT FOR PRODUCTION
+redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
+
+# Activate JSON logs
+@load policy/tuning/json-logs.zeek
+
+# Load setup for intel correlation
+
+@load frameworks/intel/seen
+@load frameworks/intel/do_expire
+
+redef Intel::item_expiration = 20min;
+
+const feed_directory = "/opt/zeek/intel_feeds";
+
+@load policy/frameworks/intel/do_notice.zeek
