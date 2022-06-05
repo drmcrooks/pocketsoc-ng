@@ -1,0 +1,89 @@
+filebeat.inputs:
+
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/capture_loss.log"
+  fields:
+    type: "zeek-capture_loss"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/conn.log"
+  fields:
+    type: "zeek-conn"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/dpd.log"
+  fields:
+    type: "zeek-dpd"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/dhcp.log"
+  fields:
+    type: "zeek-dhcp"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/dns.log"
+  fields:
+    type: "zeek-dns"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/intel.log"
+  fields:
+    type: "zeek-intel"
+  fields_under_root: true
+ 
+- input_type: log
+  paths:
+    - "/opt/zeek/logs/current/files.log"
+  fields:
+    type: "zeek-files"
+  fields_under_root: true
+
+- input_type: log
+  paths:
+    - "/opt/zeek/logs/current/http.log"
+  fields:
+    type: "zeek-http"
+  fields_under_root: true
+
+- input_type: log
+  paths:
+    - "/opt/zeek/logs/current/ssl.log"
+  fields:
+    type: "zeek-ssl"
+  fields_under_root: true
+
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/stats.log"
+  fields:
+    type: "zeek-stats"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/weird.log"
+  fields:
+    type: "zeek-weird"
+  fields_under_root: true
+ 
+- input_type: log
+  paths: 
+    - "/opt/zeek/logs/current/x509.log"
+  fields:
+    type: "zeek-x509"
+  fields_under_root: true
+ 
+output.logstash:
+  # The Logstash hosts
+  hosts: ["logstash-zeek.pocketsoc-ng_mirror:5044"]
