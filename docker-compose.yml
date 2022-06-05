@@ -81,9 +81,11 @@ services:
 ## Logstash
 
   logstash-zeek:
-    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:7.16.2
+    build: ./components/logstash-zeek
     restart: always
     container_name: logstash-zeek
+    ports:
+      - 5044:5044
     networks:
       - mirror
 
