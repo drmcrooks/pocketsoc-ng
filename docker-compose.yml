@@ -29,6 +29,7 @@ services:
       - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
       - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+      - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
     ulimits:
       memlock:
         soft: -1
@@ -54,6 +55,7 @@ services:
       - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
       - bootstrap.memory_lock=true
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
     ulimits:
       memlock:
         soft: -1
@@ -69,6 +71,8 @@ services:
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest
     container_name: opensearch-dashboards
+    environment:
+        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
     ports:
       - 5601:5601
     expose:
