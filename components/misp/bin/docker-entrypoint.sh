@@ -42,7 +42,7 @@ if [ "$1" = 'supervisord' ]; then
     # Check if redis is listening and running
     su-exec apache /var/www/MISP/app/Console/cake Admin redisReady
     
-    su-exec apache /var/www/MISP/app/Console/cake user change_pw admin@admin.test ${MISP_PASSWORD} --no_password_change
+    su-exec apache /var/www/MISP/app/Console/cake user change_pw admin@admin.test ${MISP_PASSWORD} --no_password_change > /root/changemisppw.log
 fi
 
 # unset sensitive env variables
@@ -53,6 +53,7 @@ unset SECURITY_ENCRYPTION_KEY
 unset OIDC_CLIENT_SECRET_INNER
 unset OIDC_CLIENT_SECRET
 unset OIDC_CLIENT_CRYPTO_PASS
+unset MISP_PASSWORD
 
 # Create GPG homedir under apache user
 chown -R apache:apache /var/www/MISP/.gnupg
