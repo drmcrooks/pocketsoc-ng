@@ -64,17 +64,17 @@ services:
     networks:
       - mirror
 
-#  opensearch-dashboards:
-#    image: opensearchproject/opensearch-dashboards:latest
-#    container_name: opensearch-dashboards
-#    ports:
-#      - 5601:5601
-#    expose:
-#      - "5601"
-#    environment:
-#      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
-#    networks:
-#      - mirror
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    container_name: opensearch-dashboards
+    ports:
+      - 5601:5601
+    expose:
+      - "5601"
+    environment:
+      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
+    networks:
+      - mirror
 
   mysql:
     image: mariadb:10.7
@@ -88,8 +88,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     networks:
-      mirror:
-#        ipv4_address: 172.20.0.23
+      - mirror
 
   redis:
     image: redis:6.2
@@ -97,7 +96,6 @@ services:
     container_name: misp-redis
     networks:
       mirror:
- #       ipv4_address: 172.20.0.22
 
   misp-modules:
     image: ghcr.io/nukib/misp-modules:latest
@@ -112,7 +110,6 @@ services:
       - SETFCAP
     networks:
       mirror:
-#        ipv4_address: 172.20.0.21
 
   misp:
     build: ./components/misp/
@@ -147,7 +144,7 @@ services:
       - 8080:80
       - 127.0.0.1:50000:50000
     networks:
-      mirror:
+      - mirror
 
   misp-reverse-proxy:
     build: ./components/misp-reverse-proxy/
