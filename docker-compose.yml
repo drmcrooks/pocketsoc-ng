@@ -140,7 +140,7 @@ services:
       MISP_ORG: PocketSOC # Please change for production
       MISP_MODULE_URL: http://misp-modules
       MISP_EMAIL: null@example.com # Please change for production
-      SECURITY_SALT: C2CE0A2A52448E31 # PocketSOC use only
+      SECURITY_SALT: MpqM8ofrPtedU70wTzDWIs5R6dwqRAZDMKuzJeK5neo= # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
       - 8080:80
