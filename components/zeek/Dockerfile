@@ -23,6 +23,5 @@ ADD ./config/local.zeek /opt/zeek/share/zeek/site/local.zeek
 ADD ./bin /opt/pocketsoc-ng/bin
 RUN chmod +x /opt/pocketsoc-ng/bin/startup.sh
 
-ADD ./config/supervisor.ini /etc/supervisor.ini
-
+ADD ./config/supervisor.conf /etc/supervisord.conf
 CMD ["/opt/pocketsoc-ng/bin/startup.sh"]
