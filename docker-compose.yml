@@ -17,6 +17,8 @@ services:
 
 # SOC
 
+## OpenSearch
+
   opensearch-node1:
     image: opensearchproject/opensearch:latest
     container_name: opensearch-node1
@@ -75,6 +77,15 @@ services:
       OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
     networks:
       - mirror
+
+## Logstash
+
+  logstash-zeek:
+    image: opensearchproject/logstash-oss-with-opensearch-output-plugin:7.16.2
+    restart: always
+    container_name: logstash-zeek
+
+## MISP
 
   mysql:
     image: mariadb:10.7
@@ -156,6 +167,8 @@ services:
     networks:
       - mirror
 
+## Zeek
+
   zeek:
     build: ./components/zeek/
     container_name: zeek
@@ -168,8 +181,9 @@ services:
     networks:
       - mirror
 
+# "Internal"
 
-# Client-side
+## Client
 
   client:
     build: ./components/client/
@@ -182,6 +196,8 @@ services:
 
 # "External"
 
+## Webserver 
+
   webserver:
     build: ./components/webserver/
     container_name: webserver
@@ -191,6 +207,8 @@ services:
       - webserver_data:/usr/local/apache2/htdocs/
     networks:
       - internal
+
+## SSHServer
 
   sshserver:
     build: ./components/sshserver/
