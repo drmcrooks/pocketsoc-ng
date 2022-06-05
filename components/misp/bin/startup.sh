@@ -1,3 +1,3 @@
 #! /bin/bash
 
-echo "/var/www/MISP/app/Console/cake Password 'admin@admin.test' ${MISP_PASSWORD}" >> /root/init-db
+cake user change_pw admin@admin.test ${MISP_PASSWORD}
