@@ -7,6 +7,11 @@ RUN yum install ethtool epel-release -y && yum install -y dnf-plugins-core && yu
 RUN yum install -y zeek tcpdump && yum update -y && \ 
     yum clean all && rm -rf /var/cache/yum
 
+RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch 
+COPY ./repo/elastic-oss.repo /etc/yum.repos.d/
+
+RUN yum install -y filebeat
+
 env PATH /opt/zeek/bin/:$PATH
 
 ADD ./config/zeekctl.cfg /opt/zeek/etc/zeekctl.cfg
