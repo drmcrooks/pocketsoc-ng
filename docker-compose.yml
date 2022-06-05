@@ -151,6 +151,8 @@ services:
   misp-reverse-proxy:
     build: ./components/misp-reverse-proxy/
     container_name: misp-reverse-proxy
+    environment:
+      MISP_BASEURL: http://'{{.Node.Hostname}}':8080
     ports:
       - 443:443
     networks:
