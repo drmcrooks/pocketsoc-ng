@@ -104,9 +104,9 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 # Uncomment this to source zkg's package state
 # @load packages
 
-#########################
-Additions after this line
-#########################
+###########################
+# Additions after this line
+###########################
 
 # POCKETSOC-NG SPECIFIC SETUP NOT FOR PRODUCTION
 redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
