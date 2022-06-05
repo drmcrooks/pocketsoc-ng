@@ -1,3 +1,3 @@
 #! /bin/bash
 
-cake user change_pw admin@admin.test ${MISP_PASSWORD}
+#cake user change_pw admin@admin.test ${MISP_PASSWORD}
