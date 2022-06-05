@@ -18,7 +18,9 @@ ADD ./config/zeekctl.cfg /opt/zeek/etc/zeekctl.cfg
 ADD ./config/networks.cfg /opt/zeek/etc/networks.cfg
 ADD ./config/node.cfg /opt/zeek/etc/node.cfg
 
-ADD ./config/local.zeek /opt/zeek/share/zeek/site/local.zeek
+COPY ./config/local.zeek /opt/zeek/share/zeek/site/local.zeek
+
+COPY ./config/filebeat.yml /etc/filebeat/filebeat.yml
 
 ADD ./bin /opt/pocketsoc-ng/bin
 RUN chmod +x /opt/pocketsoc-ng/bin/startup.sh
