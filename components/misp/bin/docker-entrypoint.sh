@@ -41,11 +41,6 @@ if [ "$1" = 'supervisord' ]; then
 
     # Check if redis is listening and running
     su-exec apache /var/www/MISP/app/Console/cake Admin redisReady
-    
-    # Init admin user
-    curl -k -L http://localhost/UserInitShell.php
-    
-    su-exec apache /var/www/MISP/app/Console/cake user change_pw admin@admin.test ${MISP_PASSWORD} --no_password_change
 fi
 
 # unset sensitive env variables
