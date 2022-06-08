@@ -16,8 +16,8 @@ services:
       - mirror
 
   reverse-proxy:
-    build: ./components/misp-reverse-proxy/
-    container_name: misp-reverse-proxy
+    build: ./components/reverse-proxy/
+    container_name: reverse-proxy
     environment:
         OPENSEARCH_DASHBOARDS_BASEURL: http://${HOST_HOSTNAME}:5601
         MISP_BASEURL: http://${HOST_HOSTNAME}:8080
