@@ -21,6 +21,8 @@ services:
     environment:
         OPENSEARCH_DASHBOARDS_BASEURL: http://${HOST_HOSTNAME}:5601
         MISP_BASEURL: http://${HOST_HOSTNAME}:8080
+        OPENSEARCH_DASHBOARDS_PORT: 8443
+        MISP_PORT: 443
     ports:
       - 443:443
     networks:
