@@ -1,5 +1,9 @@
 #! /bin/bash
 
+echo test > /usr/share/opensearch/test.txt
+
+exit 0
+
 USERFILE="/usr/share/opensearch/config/opensearch-security/internal_users.yml"
 
 PASSWORD_HASH=`echo $ELASTIC_PASSWORD | xargs -I {} /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p {} | grep -v \*`
