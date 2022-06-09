@@ -34,7 +34,7 @@ services:
 ## OpenSearch
 
   opensearch-node1:
-    build: ./components/router/
+    build: ./components/opensearch/
     container_name: opensearch-node1
     environment:
       - cluster.name=opensearch-cluster
@@ -60,7 +60,7 @@ services:
       - mirror
 
   opensearch-node2:
-    build: ./components/router/
+    build: ./components/opensearch/
     container_name: opensearch-node2
     environment:
       - cluster.name=opensearch-cluster
