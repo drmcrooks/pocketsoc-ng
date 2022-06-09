@@ -34,7 +34,8 @@ services:
 ## OpenSearch
 
   opensearch-node1:
-    image: opensearchproject/opensearch:latest
+    build: ./components/opensearch
+    #image: opensearchproject/opensearch:latest
     container_name: opensearch-node1
     environment:
       - cluster.name=opensearch-cluster
