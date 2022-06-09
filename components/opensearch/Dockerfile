@@ -1,6 +1,6 @@
 FROM opensearchproject/opensearch:latest
 
-RUN yum search gettext > /root/out.text
+RUN sudo yum search gettext > /root/out.text
 #yum install -y gettext
 
 ADD ./bin /opt/pocketsoc-ng/bin
