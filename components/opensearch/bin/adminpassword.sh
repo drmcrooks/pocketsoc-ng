@@ -1,15 +1,32 @@
 #! /bin/bash
 
+USERFILE="/usr/share/opensearch/config/opensearch-security/internal_users.yml"
+
 PASSWORD_HASH=`echo $ELASTIC_PASSWORD | xargs -I {} /usr/share/opensearch/plugins/opensearch-security/tools/hash.sh -p {} | grep -v \*`
 
-echo "New hash "$PASSWORD_HASH
+cat << EOF > $USERFILE
+EOF
+---
+# This is the internal user database
+# The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh
 
-ORIG_HASH=`grep -A 1 admin: /usr/share/opensearch/config/opensearch-security/internal_users.yml | grep -v admin | cut -d\" -f2`
+_meta:
+  type: "internalusers"
+  config_version: 2
 
-echo "Orig hash "$ORIG_HASH
+# Define your internal users here
 
-sed -i "s~$ORIG_PASSWORD~$PASSWORD_HASH~g" /usr/share/opensearch/config/opensearch-security/internal_users.yml
+## PocketSOC users
 
-echo -n "New config "
+admin:
+  hash: "$PASSWORD_HASH"
+  reserved: true
+  backend_roles:
+  - "admin"
+  description: "PocketSOC-NG admin user"
 
-grep -A 1 admin: /usr/share/opensearch/config/opensearch-security/internal_users.yml | grep -v admin | cut -d\" -f2
+kibanaserver:
+  hash: "$PASSWORD_HASH"
+  reserved: true
+  description: "PocketSOC-NG OpenSearch Dashboards user"
+EOF
