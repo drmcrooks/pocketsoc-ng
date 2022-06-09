@@ -11,13 +11,13 @@ _meta:
 ## PocketSOC users
 
 admin:
-  hash: "$ADMIN_HASH"
+  hash: ADMINHASH
   reserved: true
   backend_roles:
   - "admin"
   description: "PocketSOC admin user"
 
 kibanaserver:
-  hash: "$KIBANA_SERVER_HASH"
+  hash: KIBANASERVERHASH
   reserved: true
   description: "PocketSOC OpenSearch Dashboards user"
