@@ -18,6 +18,6 @@ admin:
   description: "PocketSOC admin user"
 
 kibanaserver:
-  hash: KIBANASERVERHASH
+  hash: ADMINHASH
   reserved: true
   description: "PocketSOC OpenSearch Dashboards user"
