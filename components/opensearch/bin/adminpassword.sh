@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo test > /usr/share/opensearch/test.txt
+echo test
 
 exit 0
 
