@@ -8,6 +8,6 @@ ORIG_PASSWORD=`grep -A 1 admin: /usr/share/opensearch/config/opensearch-security
 
 echo $ORIG_PASSWORD
 
-sed -i "s/${ORIG_PASSWORD}/${PASSWORD_HASH}/g" /usr/share/opensearch/config/opensearch-security/internal_users.yml
+sed -i "s#${ORIG_PASSWORD}#${PASSWORD_HASH}#g" /usr/share/opensearch/config/opensearch-security/internal_users.yml
 
 #grep $passwordhash /usr/share/opensearch/config/opensearch-security/internal_users.yml
