@@ -1,3 +1,3 @@
 FROM opensearchproject/opensearch:latest
 
-COPY ./config/internal_users.yml /usr/share/opensearch/config/opensearch-security/internal_users.yml
+COPY ./config/internal_users.yml /usr/share/opensearch/config/opensearch-security/
