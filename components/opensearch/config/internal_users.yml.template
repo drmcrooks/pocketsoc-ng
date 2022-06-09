@@ -1,0 +1,23 @@
+---
+# This is the internal user database
+# The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh
+
+_meta:
+  type: "internalusers"
+  config_version: 2
+
+# Define your internal users here
+
+## PocketSOC users
+
+admin:
+  hash: "$ADMIN_HASH"
+  reserved: true
+  backend_roles:
+  - "admin"
+  description: "PocketSOC admin user"
+
+kibanaserver:
+  hash: "$KIBANA_SERVER_HASH"
+  reserved: true
+  description: "PocketSOC OpenSearch Dashboards user"
