@@ -9,7 +9,7 @@ RUN yum install -y cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel
 RUN yum install -y tcpdump supervisor && yum update -y && \ 
     yum clean all && rm -rf /var/cache/yum
 
-RUN git clone --recursive https://github.com/zeek/zeek && cd ./zeek && ./configure --prefix /opt/zeek && make && make install
+RUN git clone --recursive https://github.com/zeek/zeek && cd ./zeek && ./configure --prefix="/opt/zeek" && make && make install
 
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch 
 COPY ./repo/elastic-oss.repo /etc/yum.repos.d/
