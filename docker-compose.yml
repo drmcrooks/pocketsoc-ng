@@ -83,7 +83,8 @@ services:
       - mirror
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
+    build: ./components/opensearch_dashboards
+    #image: opensearchproject/opensearch-dashboards:latest
     container_name: opensearch-dashboards
     environment:
         - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
