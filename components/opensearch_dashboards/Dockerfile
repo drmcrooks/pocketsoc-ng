@@ -1,3 +1,3 @@
 FROM opensearchproject/opensearch-dashboards:latest
 
-COPY  /usr/share/opensearch-dashboards/config
+COPY ./config/opensearch_dashboards.yml /usr/share/opensearch-dashboards/config
