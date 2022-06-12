@@ -34,8 +34,8 @@ services:
 ## OpenSearch
 
   opensearch-node1:
-    #build: ./components/opensearch
-    image: opensearchproject/opensearch:latest
+    build: ./components/opensearch
+    #image: opensearchproject/opensearch:latest
     container_name: opensearch-node1
     environment:
       - cluster.name=opensearch-cluster
@@ -53,7 +53,6 @@ services:
         hard: 65536
     volumes:
       - opensearch-data1:/usr/share/opensearch/data
-      - /data/pocketsoc-ng/pocketsoc-ng/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer
@@ -61,7 +60,8 @@ services:
       - mirror
 
   opensearch-node2:
-    image: opensearchproject/opensearch:latest
+    build: ./components/opensearch
+    #image: opensearchproject/opensearch:latest
     container_name: opensearch-node2
     environment:
       - cluster.name=opensearch-cluster
@@ -79,7 +79,6 @@ services:
         hard: 65536
     volumes:
       - opensearch-data2:/usr/share/opensearch/data
-    #  - /data/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
     networks:
       - mirror
 
