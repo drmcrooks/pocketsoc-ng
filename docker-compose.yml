@@ -53,7 +53,7 @@ services:
         hard: 65536
     volumes:
       - opensearch-data1:/usr/share/opensearch/data
-      - /data/pocketsoc-ng/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
+      - /data/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer
@@ -79,7 +79,7 @@ services:
         hard: 65536
     volumes:
       - opensearch-data2:/usr/share/opensearch/data
-      - /data/pocketsoc-ng/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
+      - /data/components/opensearch/config/internal_users.yml:/usr/share/opensearch/config/opensearch-security/internal_users.yml
     networks:
       - mirror
 
