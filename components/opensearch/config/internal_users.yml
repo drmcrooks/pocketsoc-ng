@@ -11,13 +11,13 @@ _meta:
 ## PocketSOC users
 
 admin:
-  hash: ${ELASTIC_HASH}
+  hash: ${envbc.ELASTIC_PASSWORD}
   reserved: true
   backend_roles:
   - "admin"
   description: "PocketSOC admin user"
 
 kibanaserver:
-  hash: ${ELASTIC_HASH}
+  hash: ${envbc.ELASTIC_PASSWORD}
   reserved: true
   description: "PocketSOC OpenSearch Dashboards user"
