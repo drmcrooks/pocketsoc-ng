@@ -237,6 +237,7 @@ services:
 volumes:
   opensearch-data1:
   opensearch-data2:
+  opensearch-dashboards:
 #  client_bin:
 #  client_data:
 #  router_bin:
