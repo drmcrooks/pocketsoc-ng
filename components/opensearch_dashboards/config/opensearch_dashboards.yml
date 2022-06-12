@@ -3,7 +3,7 @@
 opensearch.hosts: [https://localhost:9200]
 opensearch.ssl.verificationMode: none
 opensearch.username: kibanaserver
-opensearch.password: ${ELASTIC_PASSWORD}
+opensearch.password: REPLACETHISTEXT
 opensearch.requestHeadersWhitelist: [authorization, securitytenant]
 
 opensearch_security.multitenancy.enabled: true
