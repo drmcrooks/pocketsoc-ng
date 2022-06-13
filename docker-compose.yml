@@ -25,6 +25,7 @@ services:
         MISP_PORT: 443
     ports:
       - 443:443
+      - 8443:8443
     networks:
       - mirror
 
