@@ -24,8 +24,7 @@ services:
         OPENSEARCH_DASHBOARDS_PORT: 8443
         MISP_PORT: 443
     volumes:
-      - /certs/soc_training.crt:/certs/soc_training.crt:ro
-      - /certs/soc_training.key:/certs/soc_training.key:ro
+      - /certs:/certs:ro
     ports:
       - 443:443
       - 8443:8443
