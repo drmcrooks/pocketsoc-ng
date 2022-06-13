@@ -4,12 +4,12 @@ COPY ./repo/zeek.repo /etc/yum.repos.d/
 
 RUN yum install ethtool epel-release -y && yum install -y dnf-plugins-core && yum config-manager --set-enabled powertools
 
-RUN yum install -y cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python3 python3-devel swig zlib-devel git
+#RUN yum install -y cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python3 python3-devel swig zlib-devel git
 
-RUN yum install -y tcpdump supervisor && yum update -y && \ 
+RUN yum install -y zeek tcpdump supervisor && yum update -y && \ 
     yum clean all && rm -rf /var/cache/yum
 
-RUN git clone --recursive https://github.com/zeek/zeek && cd ./zeek && ./configure --prefix="/opt/zeek" && make && make install
+#RUN git clone --recursive https://github.com/zeek/zeek && cd ./zeek && ./configure --prefix="/opt/zeek" && make && make install
 
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch 
 COPY ./repo/elastic-oss.repo /etc/yum.repos.d/
