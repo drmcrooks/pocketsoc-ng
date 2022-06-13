@@ -23,6 +23,8 @@ services:
         MISP_BASEURL: http://${HOST_HOSTNAME}:8080
         OPENSEARCH_DASHBOARDS_PORT: 8443
         MISP_PORT: 443
+    volumes:
+      - /certs:/certs
     ports:
       - 443:443
       - 8443:8443
