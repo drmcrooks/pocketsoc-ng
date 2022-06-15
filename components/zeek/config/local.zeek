@@ -121,7 +121,7 @@ redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
 
 redef Intel::item_expiration = 20min;
 
-const feed_directory = "/opt/zeek/intel_feeds";
+const feed_directory = "/opt/zeek/feeds";
 
 redef Intel::read_files += {
 # MISP feeds
