@@ -123,4 +123,9 @@ redef Intel::item_expiration = 20min;
 
 const feed_directory = "/opt/zeek/intel_feeds";
 
+redef Intel::read_files += {
+# MISP feeds
+        feed_directory + "/intel.txt",
+}
+
 @load policy/frameworks/intel/do_notice.zeek
