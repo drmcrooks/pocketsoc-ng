@@ -108,6 +108,8 @@ services:
     build: ./components/logstash-zeek
     restart: always
     container_name: logstash-zeek
+    environment:
+        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
     ports:
       - 5044:5044
     networks:
