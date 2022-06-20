@@ -213,7 +213,7 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - pocketsoc-ng-certificates_certificates:/certs
+      - certificates:/certs
     networks:
       - internal
       - mirror
