@@ -252,7 +252,7 @@ volumes:
   router_data:
   webserver_data:
   pocketsoc-ng-certificates_certificates:
-    external: yes
+    external: true
 
 networks:
   internal:
