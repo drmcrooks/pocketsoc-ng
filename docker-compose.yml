@@ -25,7 +25,7 @@ services:
         MISP_PORT: 443
         HOST_HOSTNAME: ${HOST_HOSTNAME}
     volumes:
-      - pocketsoc-ng-certificates_certificates:/certs
+      - certificates:/certs
     ports:
       - 443:443
       - 8443:8443
@@ -251,7 +251,7 @@ volumes:
 #  router_bin:
   router_data:
   webserver_data:
-  pocketsoc-ng-certificates_certificates:
+  certificates:
     external: true
 
 networks:
