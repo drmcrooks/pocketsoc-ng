@@ -251,7 +251,7 @@ volumes:
   webserver_data:
   certificates:
     external: yes
-    name: certificates
+    name: pocketsoc-ng-certificates_certificates
 
 networks:
   internal:
