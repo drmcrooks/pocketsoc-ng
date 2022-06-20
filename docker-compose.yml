@@ -24,7 +24,7 @@ services:
         OPENSEARCH_DASHBOARDS_PORT: 8443
         MISP_PORT: 443
     volumes:
-      - /certs:/certs:ro
+      - certificates:/certs:ro
     ports:
       - 443:443
       - 8443:8443
