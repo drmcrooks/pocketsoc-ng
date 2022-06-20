@@ -248,6 +248,9 @@ volumes:
 #  router_bin:
   router_data:
   webserver_data:
+  certificates:
+    external: yes
+    name: certificates
 
 networks:
   internal:
