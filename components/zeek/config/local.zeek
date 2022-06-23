@@ -138,3 +138,4 @@ hook Notice::policy(n: Notice::Info)
     {
     add n$actions[Notice::ACTION_MATTERMOST];
     }
+}
