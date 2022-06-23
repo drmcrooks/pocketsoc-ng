@@ -53,5 +53,5 @@ function mattermost_payload(n: Notice::Info): string
 hook notice(n: Notice::Info)
     {
         if ( ACTION_MATTERMOST in n$actions )
-            mattermost_send_notice(opsgenie_payload(n));
+            mattermost_send_notice(mattermost_payload(n));
     }
