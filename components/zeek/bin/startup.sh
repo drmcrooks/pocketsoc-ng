@@ -7,6 +7,8 @@ chmod +x /opt/pocketsoc-ng/bin/pull_misp.sh
 
 chmod +x /opt/pocketsoc-ng/bin/notifier.sh
 
+echo ${HOST_HOSTNAME} > /opt/pocketsoc-ng/data/zeekhost
+
 which supervisord
 
 /usr/bin/supervisord -c /etc/supervisord.conf
