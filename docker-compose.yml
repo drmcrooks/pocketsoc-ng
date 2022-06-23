@@ -12,7 +12,7 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - router_data:/opt/pocketsoc/data
+      - router_data:/opt/pocketsoc-ng/data
     networks:
       - internal
       - mirror
@@ -201,7 +201,7 @@ services:
     build: ./components/zeek/
     container_name: zeek
     volumes:
-      - zeek_data:/opt/pocketsoc/data
+      - zeek_data:/opt/pocketsoc-ng/data
     cap_add:
       - NET_ADMIN
     networks:
@@ -218,7 +218,7 @@ services:
       - NET_ADMIN
     volumes:
       - certificates:/certs
-      - client_data:/opt/pocketsoc/data
+      - client_data:/opt/pocketsoc-ng/data
     networks:
       - internal
       - mirror
@@ -246,7 +246,7 @@ services:
     cap_add:
       - NET_ADMIN    
     volumes:
-      - sshserver_data:/opt/pocketsoc/data
+      - sshserver_data:/opt/pocketsoc-ng/data
     networks:
       - internal
 
