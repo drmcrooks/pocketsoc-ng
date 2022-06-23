@@ -7,8 +7,6 @@ chmod +x /opt/pocketsoc-ng/bin/pull_misp.sh
 
 chmod +x /opt/pocketsoc-ng/bin/notifier.sh
 
-chmod +x /opt/pocketsoc-ng/bin/reset_zeek.sh
-
 which supervisord
 
 /usr/bin/supervisord -c /etc/supervisord.conf
