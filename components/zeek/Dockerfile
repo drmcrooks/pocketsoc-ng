@@ -23,6 +23,7 @@ ADD ./config/networks.cfg /opt/zeek/etc/networks.cfg
 ADD ./config/node.cfg /opt/zeek/etc/node.cfg
 
 COPY ./config/local.zeek /opt/zeek/share/zeek/site/local.zeek
+COPY ./config/mattermost.zeek /opt/zeek/share/zeek/site/mattermost.zeek
 
 COPY ./config/filebeat.yml /etc/filebeat/filebeat.yml
 
