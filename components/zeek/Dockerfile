@@ -6,7 +6,7 @@ RUN yum install ethtool epel-release -y && yum install -y dnf-plugins-core && yu
 
 #RUN yum install -y cmake make gcc gcc-c++ flex bison libpcap-devel openssl-devel python3 python3-devel swig zlib-devel git
 
-RUN yum install -y zeek tcpdump supervisor && yum update -y && \ 
+RUN yum install -y zeek tcpdump supervisor tcpreplay && yum update -y && \ 
     yum clean all && rm -rf /var/cache/yum
 
 #RUN git clone --recursive https://github.com/zeek/zeek && cd ./zeek && ./configure --prefix="/opt/zeek" && make && make install
