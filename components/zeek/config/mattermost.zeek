@@ -17,7 +17,7 @@ export {
 function mattermost_send_notice(message: string)
     {
 
-    when ( local result = Exec::run([$cmd=fmt("/opt/pocketsoc/bin/notifier.sh %s", safe_shell_quote(message))]) )
+    when ( local result = Exec::run([$cmd=fmt("/opt/pocketsoc-ng/bin/notifier.sh %s", safe_shell_quote(message))]) )
                 {
                 if ( result$exit_code != 0 )
                         {
