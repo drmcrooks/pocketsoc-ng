@@ -8,9 +8,11 @@ services:
     build: ./components/router/
     container_name: router
     volumes:
-      - router_data:/opt/pocketsoc-ng/router/data
+      - router_data:/opt/pocketsoc-ng/data
     cap_add:
       - NET_ADMIN
+    volumes:
+      - router_data:/opt/pocketsoc/data
     networks:
       - internal
       - mirror
@@ -194,10 +196,8 @@ services:
   zeek:
     build: ./components/zeek/
     container_name: zeek
-#    volumes:
-#      - ./components/zeek/config/opt/zeek/share/zeek/site/local.zeek:/opt/zeek/share/zeek/site/local.zeek:ro
-#      - ./components/zeek/config/etc/filebeat/filebeat.yml:/etc/filebeat/filebeat.yml:ro
-#      - ./components/zeek/pcaps:/pcaps
+    volumes:
+      - router_data:/opt/pocketsoc/data
     cap_add:
       - NET_ADMIN
     networks:
@@ -214,6 +214,7 @@ services:
       - NET_ADMIN
     volumes:
       - certificates:/certs
+      - router_data:/opt/pocketsoc/data
     networks:
       - internal
       - mirror
@@ -239,7 +240,9 @@ services:
     build: ./components/sshserver/
     container_name: sshserver
     cap_add:
-      - NET_ADMIN
+      - NET_ADMIN    
+    volumes:
+      - sshserver_data:/opt/pocketsoc/data
     networks:
       - internal
 
@@ -247,11 +250,11 @@ volumes:
   opensearch-data1:
   opensearch-data2:
   opensearch-dashboards:
-#  client_bin:
-#  client_data:
-#  router_bin:
   router_data:
   webserver_data:
+  client_data:
+  sshserver_data:
+  zeek_data:
   certificates:
     external: true
 
