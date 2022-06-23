@@ -202,6 +202,8 @@ services:
     container_name: zeek
     volumes:
       - zeek_data:/opt/pocketsoc-ng/data
+    environment:
+        ZEEKHOST: ${HOST_HOSTNAME}
     cap_add:
       - NET_ADMIN
     networks:
