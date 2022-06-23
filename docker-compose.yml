@@ -127,6 +127,8 @@ services:
     container_name: misp-mysql
     tmpfs:
       - /tmp
+    volumes:
+      - misp_mysql_data:/var/lib/mysql/
     environment:
       MYSQL_DATABASE: misp
       MYSQL_USER: misp
@@ -171,6 +173,8 @@ services:
       - MKNOD
       - AUDIT_WRITE
       - SETFCAP
+    volumes:
+      - misp_data:/var/www/MISP/app/
     environment:
       MYSQL_HOST: misp-mysql
       MYSQL_LOGIN: misp
@@ -250,6 +254,8 @@ volumes:
   opensearch-data1:
   opensearch-data2:
   opensearch-dashboards:
+  misp_mysql_data:
+  misp_data:
   router_data:
   webserver_data:
   client_data:
