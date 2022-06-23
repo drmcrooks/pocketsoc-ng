@@ -218,7 +218,7 @@ services:
       - NET_ADMIN
     volumes:
       - certificates:/certs
-      - router_data:/opt/pocketsoc/data
+      - client_data:/opt/pocketsoc/data
     networks:
       - internal
       - mirror
