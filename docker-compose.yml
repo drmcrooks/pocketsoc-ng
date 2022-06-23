@@ -201,7 +201,7 @@ services:
     build: ./components/zeek/
     container_name: zeek
     volumes:
-      - router_data:/opt/pocketsoc/data
+      - zeek_data:/opt/pocketsoc/data
     cap_add:
       - NET_ADMIN
     networks:
