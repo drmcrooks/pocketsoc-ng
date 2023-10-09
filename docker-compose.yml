@@ -96,8 +96,8 @@ services:
       - 5601:5601
     expose:
       - "5601"
-    environment:
-      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
+#    environment:
+#      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
     volumes:
       - opensearch-dashboards:/usr/share/opensearch-dashboards/config
     networks:
