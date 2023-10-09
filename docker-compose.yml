@@ -9,8 +9,9 @@ services:
     container_name: router
     volumes:
       - router_data:/opt/pocketsoc-ng/data
-    cap_add:
-      - NET_ADMIN
+    privileged: true
+    #cap_add:
+    #  - NET_ADMIN
     networks:
       - internal
       - mirror
@@ -202,9 +203,9 @@ services:
       - zeek_data:/opt/pocketsoc-ng/data
     environment:
         ZEEKHOST: ${HOST_HOSTNAME}
-    privileged: true 
-    #cap_add:
-    #  - NET_ADMIN
+    #privileged: true 
+    cap_add:
+      - NET_ADMIN
     networks:
       - mirror
 
