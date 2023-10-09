@@ -193,20 +193,20 @@ services:
 #    networks:
 #      - mirror
 #
-### Zeek
-#
-#  zeek:
-#    build: ./components/zeek/
-#    container_name: zeek
-#    volumes:
-#      - zeek_data:/opt/pocketsoc-ng/data
-#    environment:
-#        ZEEKHOST: ${HOST_HOSTNAME}
-#    cap_add:
-#      - NET_ADMIN
-#    networks:
-#      - mirror
-#
+## Zeek
+
+  zeek:
+    build: ./components/zeek/
+    container_name: zeek
+    volumes:
+      - zeek_data:/opt/pocketsoc-ng/data
+    environment:
+        ZEEKHOST: ${HOST_HOSTNAME}
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - mirror
+
 ## "Internal"
 #
 ## Client
