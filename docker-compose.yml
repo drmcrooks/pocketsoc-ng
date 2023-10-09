@@ -11,8 +11,6 @@ services:
       - router_data:/opt/pocketsoc-ng/data
     cap_add:
       - NET_ADMIN
-    volumes:
-      - router_data:/opt/pocketsoc-ng/data
     networks:
       - internal
       - mirror
