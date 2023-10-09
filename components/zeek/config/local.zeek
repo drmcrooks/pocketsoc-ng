@@ -129,3 +129,13 @@ redef Intel::read_files += {
 };
 
 @load policy/frameworks/intel/do_notice.zeek
+
+#@load ./mattermost.zeek
+#
+#hook Notice::policy(n: Notice::Info)
+#{
+#    if ( n$note == Intel::Notice )
+#    {
+#    add n$actions[Notice::ACTION_MATTERMOST];
+#    }
+#}
