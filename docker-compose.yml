@@ -209,35 +209,35 @@ services:
 #
 ## "Internal"
 #
-### Client
-#
-#  client:
-#    build: ./components/client/
-#    container_name: client
-#    cap_add:
-#      - NET_ADMIN
-#    volumes:
-#      - certificates:/certs
-#      - client_data:/opt/pocketsoc-ng/data
-#    networks:
-#      - internal
-#      - mirror
-#
-## "External"
-#
-### Webserver 
-#
-#  webserver:
-#    build: ./components/webserver/
-#    container_name: webserver
-#    cap_add:
-#      - NET_ADMIN
-#    volumes:
-#      - webserver_data:/usr/local/apache2/htdocs/
-#      - certificates:/certs
-#    networks:
-#      - internal
-#
+## Client
+
+  client:
+    build: ./components/client/
+    container_name: client
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - certificates:/certs
+      - client_data:/opt/pocketsoc-ng/data
+    networks:
+      - internal
+      - mirror
+
+# "External"
+
+## Webserver 
+
+  webserver:
+    build: ./components/webserver/
+    container_name: webserver
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - webserver_data:/usr/local/apache2/htdocs/
+      - certificates:/certs
+    networks:
+      - internal
+
 ### SSHServer
 #
 #  sshserver:
