@@ -1,6 +1,6 @@
-FROM rockylinux:8
+FROM rockylinux:9
 
-RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap iputils iproute
+#RUN yum install -y net-tools tcpdump iptables lsof bind-utils dnsmasq vim git nmap iputils iproute
 
 ADD ./bin /opt/pocketsoc-ng/bin
 
