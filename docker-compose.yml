@@ -15,240 +15,240 @@ services:
       - internal
       - mirror
 
-  reverse-proxy:
-    build: ./components/reverse-proxy/
-    container_name: reverse-proxy
-    environment:
-        OPENSEARCH_DASHBOARDS_BASEURL: http://${HOST_HOSTNAME}:5601
-        MISP_BASEURL: http://${HOST_HOSTNAME}:8080
-        OPENSEARCH_DASHBOARDS_PORT: 8443
-        MISP_PORT: 443
-        HOST_HOSTNAME: ${HOST_HOSTNAME}
-    volumes:
-      - certificates:/certs
-    ports:
-      - 443:443
-      - 8443:8443
-    networks:
-      - mirror
-
-
-# SOC
-
-## OpenSearch
-
-  opensearch-node1:
-    build: ./components/opensearch
-    #image: opensearchproject/opensearch:latest
-    container_name: opensearch-node1
-    environment:
-      - cluster.name=opensearch-cluster
-      - node.name=opensearch-node1
-      - discovery.seed_hosts=opensearch-node1,opensearch-node2
-      - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
-      - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
-        hard: 65536
-    volumes:
-      - opensearch-data1:/usr/share/opensearch/data
-    ports:
-      - 9200:9200
-      - 9600:9600 # required for Performance Analyzer
-    networks:
-      - mirror
-
-  opensearch-node2:
-    build: ./components/opensearch
-    #image: opensearchproject/opensearch:latest
-    container_name: opensearch-node2
-    environment:
-      - cluster.name=opensearch-cluster
-      - node.name=opensearch-node2
-      - discovery.seed_hosts=opensearch-node1,opensearch-node2
-      - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
-      - bootstrap.memory_lock=true
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-      nofile:
-        soft: 65536
-        hard: 65536
-    volumes:
-      - opensearch-data2:/usr/share/opensearch/data
-    networks:
-      - mirror
-
-  opensearch-dashboards:
-    build: ./components/opensearch_dashboards
-    #image: opensearchproject/opensearch-dashboards:latest
-    container_name: opensearch-dashboards
-    environment:
-        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
-    ports:
-      - 5601:5601
-    expose:
-      - "5601"
+#  reverse-proxy:
+#    build: ./components/reverse-proxy/
+#    container_name: reverse-proxy
 #    environment:
-#      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
-    volumes:
-      - opensearch-dashboards:/usr/share/opensearch-dashboards/config
-    networks:
-      - mirror
-
-## Logstash
-
-  logstash-zeek:
-    build: ./components/logstash-zeek
-    restart: always
-    container_name: logstash-zeek
-    environment:
-        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
-    ports:
-      - 5044:5044
-    networks:
-      - mirror
-
-
-## MISP
-
-  mysql:
-    image: mariadb:10.7
-    restart: always
-    container_name: misp-mysql
-    tmpfs:
-      - /tmp
-    volumes:
-      - misp_mysql_data:/var/lib/mysql/
-    environment:
-      MYSQL_DATABASE: misp
-      MYSQL_USER: misp
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
-    networks:
-      - mirror
-
-  redis:
-    image: redis:6.2
-    restart: always
-    container_name: misp-redis
-    networks:
-      mirror:
-
-  misp-modules:
-    image: ghcr.io/nukib/misp-modules:latest
-    restart: always
-    container_name: misp-modules
-    cap_drop:
-      - NET_RAW
-      - SYS_CHROOT
-      - MKNOD
-      - NET_BIND_SERVICE
-      - AUDIT_WRITE
-      - SETFCAP
-    networks:
-      mirror:
-
-  misp:
-    build: ./components/misp/
-    restart: always
-    container_name: misp
-    depends_on:
-      - mysql
-      - redis
-    tmpfs:
-      - /tmp
-    cap_drop:
-      - NET_RAW
-      - SYS_CHROOT
-      - MKNOD
-      - AUDIT_WRITE
-      - SETFCAP
-    volumes:
-      - misp_data:/var/www/MISP/app/
-    environment:
-      MYSQL_HOST: misp-mysql
-      MYSQL_LOGIN: misp
-      MYSQL_PASSWORD: password # Please change for production
-      MYSQL_DATABASE: misp
-      REDIS_HOST: misp-redis
-      MISP_BASEURL: https://${HOST_HOSTNAME}
-      MISP_PASSWORD: ${ADMIN_PASSWORD}
-      MISP_UUID: 86186CBF-6940-4354-857D-2C1C93F8FFC0 # PocketSOC use only
-      MISP_ORG: PocketSOC # Please change for production
-      MISP_MODULE_URL: http://misp-modules
-      MISP_EMAIL: null@example.com # Please change for production
-      SECURITY_SALT: MpqM8ofrPtedU70wTzDWIs5R6dwqRAZDMKuzJeK5neo= # PocketSOC use only
-      ZEROMQ_ENABLED: "yes"
-    ports:
-      - 8080:80
-      - 127.0.0.1:50000:50000
-    networks:
-      - mirror
-
-## Zeek
-
-  zeek:
-    build: ./components/zeek/
-    container_name: zeek
-    volumes:
-      - zeek_data:/opt/pocketsoc-ng/data
-    environment:
-        ZEEKHOST: ${HOST_HOSTNAME}
-    cap_add:
-      - NET_ADMIN
-    networks:
-      - mirror
-
-# "Internal"
-
-## Client
-
-  client:
-    build: ./components/client/
-    container_name: client
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - certificates:/certs
-      - client_data:/opt/pocketsoc-ng/data
-    networks:
-      - internal
-      - mirror
-
-# "External"
-
-## Webserver 
-
-  webserver:
-    build: ./components/webserver/
-    container_name: webserver
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - webserver_data:/usr/local/apache2/htdocs/
-      - certificates:/certs
-    networks:
-      - internal
-
-## SSHServer
-
-  sshserver:
-    build: ./components/sshserver/
-    container_name: sshserver
-    cap_add:
-      - NET_ADMIN    
-    volumes:
-      - sshserver_data:/opt/pocketsoc-ng/data
-    networks:
-      - internal
+#        OPENSEARCH_DASHBOARDS_BASEURL: http://${HOST_HOSTNAME}:5601
+#        MISP_BASEURL: http://${HOST_HOSTNAME}:8080
+#        OPENSEARCH_DASHBOARDS_PORT: 8443
+#        MISP_PORT: 443
+#        HOST_HOSTNAME: ${HOST_HOSTNAME}
+#    volumes:
+#      - certificates:/certs
+#    ports:
+#      - 443:443
+#      - 8443:8443
+#    networks:
+#      - mirror
+#
+#
+## SOC
+#
+### OpenSearch
+#
+#  opensearch-node1:
+#    build: ./components/opensearch
+#    #image: opensearchproject/opensearch:latest
+#    container_name: opensearch-node1
+#    environment:
+#      - cluster.name=opensearch-cluster
+#      - node.name=opensearch-node1
+#      - discovery.seed_hosts=opensearch-node1,opensearch-node2
+#      - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
+#      - bootstrap.memory_lock=true # along with the memlock settings below, disables swapping
+#      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # minimum and maximum Java heap size, recommend setting both to 50% of system RAM
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#      nofile:
+#        soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
+#        hard: 65536
+#    volumes:
+#      - opensearch-data1:/usr/share/opensearch/data
+#    ports:
+#      - 9200:9200
+#      - 9600:9600 # required for Performance Analyzer
+#    networks:
+#      - mirror
+#
+#  opensearch-node2:
+#    build: ./components/opensearch
+#    #image: opensearchproject/opensearch:latest
+#    container_name: opensearch-node2
+#    environment:
+#      - cluster.name=opensearch-cluster
+#      - node.name=opensearch-node2
+#      - discovery.seed_hosts=opensearch-node1,opensearch-node2
+#      - cluster.initial_master_nodes=opensearch-node1,opensearch-node2
+#      - bootstrap.memory_lock=true
+#      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#      nofile:
+#        soft: 65536
+#        hard: 65536
+#    volumes:
+#      - opensearch-data2:/usr/share/opensearch/data
+#    networks:
+#      - mirror
+#
+#  opensearch-dashboards:
+#    build: ./components/opensearch_dashboards
+#    #image: opensearchproject/opensearch-dashboards:latest
+#    container_name: opensearch-dashboards
+#    environment:
+#        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
+#    ports:
+#      - 5601:5601
+#    expose:
+#      - "5601"
+##    environment:
+##      OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
+#    volumes:
+#      - opensearch-dashboards:/usr/share/opensearch-dashboards/config
+#    networks:
+#      - mirror
+#
+### Logstash
+#
+#  logstash-zeek:
+#    build: ./components/logstash-zeek
+#    restart: always
+#    container_name: logstash-zeek
+#    environment:
+#        - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
+#    ports:
+#      - 5044:5044
+#    networks:
+#      - mirror
+#
+#
+### MISP
+#
+#  mysql:
+#    image: mariadb:10.7
+#    restart: always
+#    container_name: misp-mysql
+#    tmpfs:
+#      - /tmp
+#    volumes:
+#      - misp_mysql_data:/var/lib/mysql/
+#    environment:
+#      MYSQL_DATABASE: misp
+#      MYSQL_USER: misp
+#      MYSQL_PASSWORD: password
+#      MYSQL_ROOT_PASSWORD: password
+#    networks:
+#      - mirror
+#
+#  redis:
+#    image: redis:6.2
+#    restart: always
+#    container_name: misp-redis
+#    networks:
+#      mirror:
+#
+#  misp-modules:
+#    image: ghcr.io/nukib/misp-modules:latest
+#    restart: always
+#    container_name: misp-modules
+#    cap_drop:
+#      - NET_RAW
+#      - SYS_CHROOT
+#      - MKNOD
+#      - NET_BIND_SERVICE
+#      - AUDIT_WRITE
+#      - SETFCAP
+#    networks:
+#      mirror:
+#
+#  misp:
+#    build: ./components/misp/
+#    restart: always
+#    container_name: misp
+#    depends_on:
+#      - mysql
+#      - redis
+#    tmpfs:
+#      - /tmp
+#    cap_drop:
+#      - NET_RAW
+#      - SYS_CHROOT
+#      - MKNOD
+#      - AUDIT_WRITE
+#      - SETFCAP
+#    volumes:
+#      - misp_data:/var/www/MISP/app/
+#    environment:
+#      MYSQL_HOST: misp-mysql
+#      MYSQL_LOGIN: misp
+#      MYSQL_PASSWORD: password # Please change for production
+#      MYSQL_DATABASE: misp
+#      REDIS_HOST: misp-redis
+#      MISP_BASEURL: https://${HOST_HOSTNAME}
+#      MISP_PASSWORD: ${ADMIN_PASSWORD}
+#      MISP_UUID: 86186CBF-6940-4354-857D-2C1C93F8FFC0 # PocketSOC use only
+#      MISP_ORG: PocketSOC # Please change for production
+#      MISP_MODULE_URL: http://misp-modules
+#      MISP_EMAIL: null@example.com # Please change for production
+#      SECURITY_SALT: MpqM8ofrPtedU70wTzDWIs5R6dwqRAZDMKuzJeK5neo= # PocketSOC use only
+#      ZEROMQ_ENABLED: "yes"
+#    ports:
+#      - 8080:80
+#      - 127.0.0.1:50000:50000
+#    networks:
+#      - mirror
+#
+### Zeek
+#
+#  zeek:
+#    build: ./components/zeek/
+#    container_name: zeek
+#    volumes:
+#      - zeek_data:/opt/pocketsoc-ng/data
+#    environment:
+#        ZEEKHOST: ${HOST_HOSTNAME}
+#    cap_add:
+#      - NET_ADMIN
+#    networks:
+#      - mirror
+#
+## "Internal"
+#
+### Client
+#
+#  client:
+#    build: ./components/client/
+#    container_name: client
+#    cap_add:
+#      - NET_ADMIN
+#    volumes:
+#      - certificates:/certs
+#      - client_data:/opt/pocketsoc-ng/data
+#    networks:
+#      - internal
+#      - mirror
+#
+## "External"
+#
+### Webserver 
+#
+#  webserver:
+#    build: ./components/webserver/
+#    container_name: webserver
+#    cap_add:
+#      - NET_ADMIN
+#    volumes:
+#      - webserver_data:/usr/local/apache2/htdocs/
+#      - certificates:/certs
+#    networks:
+#      - internal
+#
+### SSHServer
+#
+#  sshserver:
+#    build: ./components/sshserver/
+#    container_name: sshserver
+#    cap_add:
+#      - NET_ADMIN    
+#    volumes:
+#      - sshserver_data:/opt/pocketsoc-ng/data
+#    networks:
+#      - internal
 
 volumes:
   opensearch-data1:
