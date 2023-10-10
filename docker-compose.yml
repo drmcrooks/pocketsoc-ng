@@ -183,7 +183,7 @@ services:
       MYSQL_DATABASE: misp
       REDIS_HOST: misp-redis
       MISP_BASEURL: https://${HOST_HOSTNAME}
-      MISP_PASSWORD: ${ADMIN_PASSWORD}
+      MISP_PASSWORD: ".uuo0C?<E1aTyRN4?mpe"
       MISP_UUID: 86186CBF-6940-4354-857D-2C1C93F8FFC0 # PocketSOC use only
       MISP_ORG: PocketSOC # Please change for production
       MISP_MODULE_URL: http://misp-modules
