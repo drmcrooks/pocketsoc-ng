@@ -1,6 +1,6 @@
 ---
 
-opensearch.hosts: [https://localhost:9200]
+opensearch.hosts: [https://opensearch-node1:9200]
 opensearch.ssl.verificationMode: none
 opensearch.username: kibanaserver
 opensearch.password: REPLACETHISTEXT
