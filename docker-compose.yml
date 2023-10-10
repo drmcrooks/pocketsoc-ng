@@ -268,6 +268,7 @@ volumes:
   client_data:
   sshserver_data:
   zeek_data:
+  docs_data:
   certificates:
     external: true
 
