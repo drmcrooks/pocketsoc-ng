@@ -237,6 +237,14 @@ services:
     networks:
       - internal
 
+  documentation:
+      build: ./components/documentation/
+      container_name: documentation
+      volumes:
+        - docs_data:/docs
+      networks:
+        - internal
+
 ### SSHServer
 #
 #  sshserver:
