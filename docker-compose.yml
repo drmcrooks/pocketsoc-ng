@@ -35,6 +35,11 @@ services:
     networks:
       - mirror
 
+  documentation:
+      build: ./components/documentation/
+      container_name: documentation
+      networks:
+        - mirror
 
 # SOC
 
@@ -236,12 +241,6 @@ services:
       - certificates:/certs
     networks:
       - internal
-
-  documentation:
-      build: ./components/documentation/
-      container_name: documentation
-      networks:
-        - internal
 
 ### SSHServer
 #
