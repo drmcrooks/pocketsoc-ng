@@ -1,2 +1,3 @@
 # Introduction
 
+${MISP_BASEURL}
