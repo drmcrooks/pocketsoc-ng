@@ -1,6 +1,6 @@
 FROM squidfunk/mkdocs-material
 
-COPY ./docs/ /docs/
+COPY ./data/ /docs/
 
 EXPOSE 8000
 

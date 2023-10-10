@@ -240,8 +240,6 @@ services:
   documentation:
       build: ./components/documentation/
       container_name: documentation
-      volumes:
-        - docs_data:/docs
       networks:
         - internal
 
@@ -268,7 +266,6 @@ volumes:
   client_data:
   sshserver_data:
   zeek_data:
-  docs_data:
   certificates:
     external: true
 
