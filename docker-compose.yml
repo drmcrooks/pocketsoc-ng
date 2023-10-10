@@ -25,6 +25,8 @@ services:
         OPENSEARCH_DASHBOARDS_PORT: 8443
         MISP_PORT: 443
         HOST_HOSTNAME: ${HOST_HOSTNAME}
+    extra_hosts:
+    - "host.docker.internal:host-gateway"
     volumes:
       - certificates:/certs
     ports:
