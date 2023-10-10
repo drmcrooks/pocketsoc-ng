@@ -33,6 +33,7 @@ services:
       - certificates:/certs
     ports:
       - 443:443
+      - 6443:6443
       - 8443:8443
     networks:
       - mirror
