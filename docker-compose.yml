@@ -43,7 +43,7 @@ services:
 #     build: ./components/opensearch
 #    build: ./components/opensearch_dashboards
 
-  opensearch-node1:
+opensearch-node1:
   build: ./components/opensearch
   #image: opensearchproject/opensearch:latest
   container_name: opensearch-node1
