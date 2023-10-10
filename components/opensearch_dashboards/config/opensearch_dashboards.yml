@@ -1,9 +1,9 @@
 ---
 
-opensearch.hosts: [https://opensearch-node1:9200]
+opensearch.hosts: [https://opensearch-node1:9200,https://opensearch-node2:9200]
 opensearch.ssl.verificationMode: none
 opensearch.username: kibanaserver
-opensearch.password: REPLACETHISTEXT
+opensearch.password: kibanaserver
 opensearch.requestHeadersWhitelist: [authorization, securitytenant]
 
 opensearch_security.multitenancy.enabled: true
