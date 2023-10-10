@@ -44,8 +44,8 @@ services:
 #    build: ./components/opensearch_dashboards
 
 opensearch-node1:
-  build: ./components/opensearch
-  #image: opensearchproject/opensearch:latest
+  #build: ./components/opensearch
+  image: opensearchproject/opensearch:latest
   container_name: opensearch-node1
   environment:
     - cluster.name=opensearch-cluster
@@ -70,8 +70,8 @@ opensearch-node1:
     - mirror
 
 opensearch-node2:
-  build: ./components/opensearch
-  #image: opensearchproject/opensearch:latest
+  #build: ./components/opensearch
+  image: opensearchproject/opensearch:latest
   container_name: opensearch-node2
   environment:
     - cluster.name=opensearch-cluster
@@ -93,17 +93,14 @@ opensearch-node2:
     - mirror
 
 opensearch-dashboards:
-  build: ./components/opensearch_dashboards
-  #image: opensearchproject/opensearch-dashboards:latest
+  image: opensearchproject/opensearch-dashboards:latest # Make sure the version of opensearch-dashboards matches the version of opensearch installed on other nodes
   container_name: opensearch-dashboards
   ports:
-    - 5601:5601
+    - 5601:5601 # Map host port 5601 to container port 5601
   expose:
-    - "5601"
+    - "5601" # Expose port 5601 for web access to OpenSearch Dashboards
   environment:
-    OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]'
-  volumes:
-    - opensearch-dashboards:/usr/share/opensearch-dashboards/config
+    OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]' # Define the OpenSearch nodes that OpenSearch Dashboards will query
   networks:
     - mirror
 
