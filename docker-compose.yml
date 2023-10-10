@@ -193,7 +193,7 @@ services:
       SECURITY_SALT: MpqM8ofrPtedU70wTzDWIs5R6dwqRAZDMKuzJeK5neo= # PocketSOC use only
       ZEROMQ_ENABLED: "yes"
     ports:
-      - 8080:80
+#      - 8080:80
       - 127.0.0.1:50000:50000
     networks:
       - mirror
