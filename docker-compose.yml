@@ -21,7 +21,7 @@ services:
     container_name: reverse-proxy
     environment:
         OPENSEARCH_DASHBOARDS_BASEURL: http://opensearch-dashboards:5601
-        MISP_BASEURL: http://misp
+        MISP_BASEURL: http://misp:8080
         OPENSEARCH_DASHBOARDS_PORT: 8443
         MISP_PORT: 7443
         HOST_HOSTNAME: ${HOST_HOSTNAME}
