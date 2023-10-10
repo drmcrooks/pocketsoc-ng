@@ -41,8 +41,8 @@ services:
 ## OpenSearch
 
   opensearch-node1:
-    build: ./components/opensearch
-    #image: opensearchproject/opensearch:latest
+    #build: ./components/opensearch
+    image: opensearchproject/opensearch:latest
     container_name: opensearch-node1
     environment:
       - cluster.name=opensearch-cluster # Name the cluster
@@ -67,8 +67,8 @@ services:
       - mirror
 
   opensearch-node2:
-    build: ./components/opensearch
-    #image: opensearchproject/opensearch:latest
+    #build: ./components/opensearch
+    image: opensearchproject/opensearch:latest
     container_name: opensearch-node2
     environment:
       - cluster.name=opensearch-cluster
@@ -90,8 +90,8 @@ services:
       - mirror
 
   opensearch-dashboards:
-    build: ./components/opensearch_dashboards
-    #image: opensearchproject/opensearch-dashboards:latest
+    #build: ./components/opensearch_dashboards
+    image: opensearchproject/opensearch-dashboards:latest
     container_name: opensearch-dashboards
     ports:
       - 5601:5601 # Map host port 5601 to container port 5601
