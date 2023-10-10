@@ -1,6 +1,6 @@
 ---
 
-opensearch.hosts: [https://opensearch-node1:9200]
+opensearch.hosts: [https://opensearch-node1.pocketsoc-ng_mirror:9200]
 opensearch.ssl.verificationMode: none
 opensearch.username: kibanaserver
 opensearch.password: kibanaserver
