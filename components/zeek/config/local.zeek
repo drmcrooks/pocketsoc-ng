@@ -112,7 +112,7 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
 
 # Activate JSON logs
-#@load policy/tuning/json-logs.zeek
+@load policy/tuning/json-logs.zeek
 
 # Load setup for intel correlation
 
