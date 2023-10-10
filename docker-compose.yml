@@ -23,7 +23,7 @@ services:
         OPENSEARCH_DASHBOARDS_BASEURL: http://opensearch-dashboards:5601
         MISP_BASEURL: http://misp.pocketsoc-ng_mirror
         OPENSEARCH_DASHBOARDS_PORT: 8443
-        MISP_PORT: 7443
+        MISP_PORT: 6443
         HOST_HOSTNAME: ${HOST_HOSTNAME}
         DOCUMENTATION_BASEURL: http://documentation:8000
         DOCUMENTATION_PORT: 443
@@ -185,8 +185,8 @@ services:
       MYSQL_PASSWORD: password # Please change for production
       MYSQL_DATABASE: misp
       REDIS_HOST: misp-redis
-      MISP_BASEURL: https://${HOST_HOSTNAME}:7443
-      MISP_PASSWORD: "0123456789Aa"
+      MISP_BASEURL: https://${HOST_HOSTNAME}:6443
+      MISP_PASSWORD: "CERN-Security-School-2023"
       MISP_UUID: 86186CBF-6940-4354-857D-2C1C93F8FFC0 # PocketSOC use only
       MISP_ORG: PocketSOC # Please change for production
       MISP_MODULE_URL: http://misp-modules
