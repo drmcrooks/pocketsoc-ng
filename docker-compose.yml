@@ -49,6 +49,8 @@ services:
   documentation:
       build: ./components/documentation/
       container_name: documentation
+      depends_on:
+        - documentation_builder
       volumes:
         - docs_data:/docs:ro
       networks:
