@@ -7,6 +7,7 @@ services:
   router:
     build: ./components/router/
     container_name: router
+    restart: always
     volumes:
       - router_data:/opt/pocketsoc-ng/data
     privileged: true
@@ -19,6 +20,7 @@ services:
   reverse-proxy:
     build: ./components/reverse-proxy/
     container_name: reverse-proxy
+    restart: always
     environment:
         OPENSEARCH_DASHBOARDS_BASEURL: http://opensearch-dashboards:5601
         MISP_BASEURL: http://misp.pocketsoc-ng_mirror
@@ -41,6 +43,7 @@ services:
   documentation_builder:
       build: ./components/documentation_builder/
       container_name: documentation_builder
+      restart: always
       volumes:
         - docs_data:/docs
       networks:
@@ -49,6 +52,7 @@ services:
   documentation:
       build: ./components/documentation/
       container_name: documentation
+      restart: always
       depends_on:
         - documentation_builder
       volumes:
@@ -67,6 +71,7 @@ services:
   opensearch-node1: # This is also the hostname of the container within the Docker network (i.e. https://opensearch-node1/)
     image: opensearchproject/opensearch:latest # Specifying the latest available image - modify if you want a specific version
     container_name: opensearch-node1
+    restart: always
     environment:
       - cluster.name=opensearch-cluster # Name the cluster
       - node.name=opensearch-node1 # Name the node that will run in this container
@@ -91,6 +96,7 @@ services:
   opensearch-node2:
     image: opensearchproject/opensearch:latest # This should be the same image used for opensearch-node1 to avoid issues
     container_name: opensearch-node2
+    restart: always
     environment:
       - cluster.name=opensearch-cluster
       - node.name=opensearch-node2
@@ -112,6 +118,7 @@ services:
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest # Make sure the version of opensearch-dashboards matches the version of opensearch installed on other nodes
     container_name: opensearch-dashboards
+    restart: always
     ports:
       - 5601:5601 # Map host port 5601 to container port 5601
     expose:
@@ -216,6 +223,7 @@ services:
   zeek:
     build: ./components/zeek/
     container_name: zeek
+    restart: always
     volumes:
       - zeek_data:/opt/pocketsoc-ng/data
     environment:
@@ -233,6 +241,7 @@ services:
   client:
     build: ./components/client/
     container_name: client
+    restart: always
     cap_add:
       - NET_ADMIN
     volumes:
@@ -249,6 +258,7 @@ services:
   webserver:
     build: ./components/webserver/
     container_name: webserver
+    restart: always
     cap_add:
       - NET_ADMIN
     volumes:
