@@ -38,9 +38,19 @@ services:
     networks:
       - mirror
 
+  documentation_builder:
+      build: ./components/documentation_builder/
+      container_name: documentation
+      volumes:
+        - docs_data:/docs
+      networks:
+        - mirror
+
   documentation:
       build: ./components/documentation/
       container_name: documentation
+      volumes:
+        - docs_data:/docs
       networks:
         - mirror
 
@@ -268,6 +278,7 @@ volumes:
   client_data:
   sshserver_data:
   zeek_data:
+  docs_data:
   certificates:
     external: true
 
