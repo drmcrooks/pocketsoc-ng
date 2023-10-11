@@ -40,7 +40,7 @@ services:
 
   documentation_builder:
       build: ./components/documentation_builder/
-      container_name: documentation
+      container_name: documentation_builder
       volumes:
         - docs_data:/docs
       networks:
@@ -50,7 +50,7 @@ services:
       build: ./components/documentation/
       container_name: documentation
       volumes:
-        - docs_data:/docs
+        - docs_data:/docs:ro
       networks:
         - mirror
 
