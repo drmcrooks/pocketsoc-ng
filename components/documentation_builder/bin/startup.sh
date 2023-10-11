@@ -1,5 +1,8 @@
 #! /bin/bash
 
 rm -rf /docs/*
-git clone https://github.com/drmcrooks/pocketsoc-ng-docs.git /docs
+rm -rf /tmp/docs/
+git clone https://github.com/drmcrooks/pocketsoc-ng-docs.git /tmp/docs/
+mv /tmp/docs/* /docs/
+
 tail -f /dev/null
