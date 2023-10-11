@@ -1,7 +1,5 @@
 FROM squidfunk/mkdocs-material
 
-COPY ./data/ /docs/
-
 EXPOSE 8000
 
 ENTRYPOINT ["mkdocs"]
