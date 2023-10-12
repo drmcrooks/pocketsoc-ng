@@ -1,14 +1,10 @@
 #! /bin/bash
 
- routerip=`dig +noall +answer router.pocketsoc-ng_internal | awk '{print $NF}'`
+ routerip=`dig +noall +answer router.pocketsoc-ng_default | awk '{print $NF}'`
  
  # Define subnets
 
- internal_subnet="18"
+ internal_subnet=`ifconfig | grep 172 | awk '{print $2}' | cut -d. -f2`
 
- # Define interfaces
-
- internal_interface=`ip route | grep default | awk '{print $NF}'`
-
- ip route add 172.18.0.0/24 dev $internal_interface
- ip route change 172.18.0.0/24 via $routerip
+ ip route add 172.$internal_subnet.0.0/24 dev eth0
+ ip route change 172.$internal_subnet.0.0/24 via $routerip
