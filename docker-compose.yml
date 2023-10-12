@@ -146,7 +146,7 @@ services:
 
   mysql:
     image: mariadb:10.7
-    
+    restart: always
     container_name: misp-mysql
     tmpfs:
       - /tmp
@@ -162,14 +162,14 @@ services:
 
   redis:
     image: redis:6.2
-    
+    restart: always
     container_name: misp-redis
     networks:
       mirror:
 
   misp-modules:
     image: ghcr.io/nukib/misp-modules:latest
-    
+    restart: always
     container_name: misp-modules
     cap_drop:
       - NET_RAW
@@ -183,7 +183,7 @@ services:
 
   misp:
     build: ./components/misp/
-    
+    restart: always
     container_name: misp
     depends_on:
       - mysql
