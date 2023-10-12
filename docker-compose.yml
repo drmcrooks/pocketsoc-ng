@@ -13,9 +13,9 @@ services:
     privileged: true
     #cap_add:
     #  - NET_ADMIN
-    networks:
-      - internal
-      - mirror
+#    networks:
+#      - internal
+#      - mirror
 
   reverse-proxy:
     build: ./components/reverse-proxy/
@@ -37,8 +37,8 @@ services:
       - 443:443
       - 6443:6443
       - 8443:8443
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
   documentation_builder:
       build: ./components/documentation_builder/
@@ -46,8 +46,8 @@ services:
       
       volumes:
         - docs_data:/docs
-      networks:
-        - mirror
+#      networks:
+#        - mirror
 
   documentation:
       build: ./components/documentation/
@@ -57,8 +57,8 @@ services:
         - documentation_builder
       volumes:
         - docs_data:/docs:ro
-      networks:
-        - mirror
+#      networks:
+#        - mirror
 
 # SOC
 
@@ -91,8 +91,9 @@ services:
     ports:
       - 9200:9200 # REST API
       - 9600:9600 # Performance Analyzer
-    networks:
-      - mirror # All of the containers will join the same Docker bridge network
+  #  networks:
+  #    - mirror # All of the containers will join the same Docker bridge network
+  
   opensearch-node2:
     image: opensearchproject/opensearch:latest # This should be the same image used for opensearch-node1 to avoid issues
     container_name: opensearch-node2
@@ -113,8 +114,9 @@ services:
         hard: 65536
     volumes:
       - opensearch-data2:/usr/share/opensearch/data
-    networks:
-      - mirror
+#    networks:
+#      - mirror
+
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest # Make sure the version of opensearch-dashboards matches the version of opensearch installed on other nodes
     container_name: opensearch-dashboards
@@ -125,8 +127,8 @@ services:
       - "5601" # Expose port 5601 for web access to OpenSearch Dashboards
     environment:
       OPENSEARCH_HOSTS: '["https://opensearch-node1:9200","https://opensearch-node2:9200"]' # Define the OpenSearch nodes that OpenSearch Dashboards will query
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
 ## Logstash
 
@@ -138,8 +140,8 @@ services:
         - ELASTIC_PASSWORD=${ADMIN_PASSWORD}
     ports:
       - 5044:5044
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
 
 # MISP
@@ -157,15 +159,15 @@ services:
       MYSQL_USER: misp
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
   redis:
     image: redis:6.2
     restart: always
     container_name: misp-redis
-    networks:
-      mirror:
+#    networks:
+#      mirror:
 
   misp-modules:
     image: ghcr.io/nukib/misp-modules:latest
@@ -178,8 +180,8 @@ services:
       - NET_BIND_SERVICE
       - AUDIT_WRITE
       - SETFCAP
-    networks:
-      mirror:
+#    networks:
+#      mirror:
 
   misp:
     build: ./components/misp/
@@ -215,8 +217,8 @@ services:
     ports:
 #      - 8080:80
       - 127.0.0.1:50000:50000
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
 ## Zeek
 
@@ -231,8 +233,8 @@ services:
     #privileged: true 
     cap_add:
       - NET_ADMIN
-    networks:
-      - mirror
+#    networks:
+#      - mirror
 
 ## "Internal"
 
@@ -247,9 +249,9 @@ services:
     volumes:
       - certificates:/certs
       - client_data:/opt/pocketsoc-ng/data
-    networks:
-      - internal
-      - mirror
+#    networks:
+#      - internal
+#      - mirror
 
 # "External"
 
@@ -264,8 +266,8 @@ services:
     volumes:
       - webserver_data:/usr/local/apache2/htdocs/
       - certificates:/certs
-    networks:
-      - internal
+#    networks:
+#      - internal
 
 ### SSHServer
 #
@@ -294,17 +296,17 @@ volumes:
   certificates:
     external: true
 
-networks:
-  internal:
-    ipam:
-      config:
-        - 
-          subnet: 172.18.0.0/16
-          gateway: 172.18.0.1
-  mirror:
-    ipam:
-      config:
-        - 
-          subnet: 172.20.0.0/16
-          gateway: 172.20.0.1
-
+#networks:
+#  internal:
+#    ipam:
+#      config:
+#        - 
+#          subnet: 172.18.0.0/16
+#          gateway: 172.18.0.1
+#  mirror:
+#    ipam:
+#      config:
+#        - 
+#          subnet: 172.20.0.0/16
+#          gateway: 172.20.0.1
+#
