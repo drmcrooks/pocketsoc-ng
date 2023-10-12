@@ -86,4 +86,4 @@ filebeat.inputs:
  
 output.logstash:
   # The Logstash hosts
-  hosts: ["logstash-zeek.pocketsoc-ng_mirror:5044"]
+  hosts: ["logstash-zeek.pocketsoc-ng_default:5044"]
