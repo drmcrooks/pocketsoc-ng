@@ -1,6 +1,6 @@
 FROM quay.io/centos/centos:stream8
 
-RUN yum install -y git
+# RUN yum install -y git
 
 ADD ./bin /opt/pocketsoc-ng/bin
 
